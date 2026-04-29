@@ -12,13 +12,16 @@
       (function () {
         var storageKey = "gtm-popup-test-vars";
         var defaults = {
-          uid: "user_10293",
-          request_url: window.location.href,
-          cust_dim_hit_referrer: document.referrer || "https://example.com/newsletter",
-          cust_dim_hit_sp_view: "grid",
-          mts_visit_id: "visit_20260429_001",
-          cust_dim_registed: "true",
-          cust_dim_user_sid: "sid_demo_88e9"
+          rid: "cdmpTOP-1,cdmpTOP-2,cdmpTOP-4,cdmpTOP-10",
+          uid: "IjSfCgfYmjMnHDZCPNVRXIZcfdfM6oU4",
+          request_url:
+            "https://www.monotaro.com/g/00188682/?t.q=%E3%82%AA%E3%82%A4%E3%83%AB%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC",
+          cust_dim_hit_referrer:
+            "https://www.monotaro.com/s/?c=&q=%E3%82%AA%E3%82%A4%E3%83%AB%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC",
+          cust_dim_hit_sp_view: "pc_pc",
+          mts_visit_id: "l6xvzhvj1t",
+          cust_dim_registed: "1",
+          cust_dim_user_sid: "M02WK-6P2Ln_CpnCNPMW5WAn5CfUYm"
         };
         var saved = {};
 
@@ -31,9 +34,13 @@
         var testVariables = Object.assign({}, defaults, saved);
 
         window.gtmPopupTestStorageKey = storageKey;
+        window.gtmPopupServerUrl = window.location.origin + "/api/popup-html";
         window.gtmPopupTestDefaults = defaults;
         window.gtmPopupTestVariables = testVariables;
+        window.rid = testVariables.rid;
+        window.userId = testVariables.uid;
         window.uid = testVariables.uid;
+        window.request_url = testVariables.request_url;
         window.cust_dim_hit_referrer = testVariables.cust_dim_hit_referrer;
         window.cust_dim_hit_sp_view = testVariables.cust_dim_hit_sp_view;
         window.mts_visit_id = testVariables.mts_visit_id;
@@ -43,6 +50,7 @@
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: "gtm_popup_test_variables",
+          rid: testVariables.rid,
           userId: testVariables.uid,
           uid: testVariables.uid,
           request_url: testVariables.request_url,
@@ -103,6 +111,10 @@
 
         <form id="gtm-test-form" class="test-form">
           <label>
+            <span>rid</span>
+            <input name="rid" autocomplete="off" />
+          </label>
+          <label>
             <span>userId / uid</span>
             <input name="uid" autocomplete="off" />
           </label>
@@ -117,6 +129,7 @@
           <label>
             <span>view_mode</span>
             <select name="cust_dim_hit_sp_view">
+              <option value="pc_pc">pc_pc</option>
               <option value="grid">grid</option>
               <option value="list">list</option>
               <option value="compact">compact</option>
@@ -129,6 +142,8 @@
           <label>
             <span>registered</span>
             <select name="cust_dim_registed">
+              <option value="1">1</option>
+              <option value="0">0</option>
               <option value="true">true</option>
               <option value="false">false</option>
             </select>
